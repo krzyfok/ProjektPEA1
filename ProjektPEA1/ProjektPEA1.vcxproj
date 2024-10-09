@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bruteforce.cpp" />
+    <ClCompile Include="LicznikCzasu.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MenuAbstr.cpp" />
     <ClCompile Include="NN.cpp" />
@@ -135,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bruteforce.h" />
+    <ClInclude Include="LicznikCzasu.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MenuAbstr.h" />
     <ClInclude Include="NN.h" />
