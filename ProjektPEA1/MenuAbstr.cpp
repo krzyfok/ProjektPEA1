@@ -8,6 +8,7 @@ vector<vector<int>> MenuAbstr::macierz;
 vector<int> MenuAbstr::kolejnosc_przejscia;
 vector<int> MenuAbstr::kolejnosc_przejscia_nastepnego;
 int MenuAbstr::waga_calkowita =0;
+LicznikCzasu licznik;
 void MenuAbstr::generacja()
 {
 

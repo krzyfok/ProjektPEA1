@@ -4,7 +4,7 @@
 #include"MenuAbstr.h"
 class NN :public MenuAbstr {
 public:
-	void start() override;
+	double start() override;
 
 	int nn(int start);
 };

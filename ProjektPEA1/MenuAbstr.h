@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include"LicznikCzasu.h"
 using namespace std;
 
 class MenuAbstr {
@@ -15,7 +16,7 @@ public:
     static void wyswietlanie();
     static void wczytywanie();
 
-    virtual void start() = 0; 
+    virtual double start() = 0; 
 };
 
 #endif

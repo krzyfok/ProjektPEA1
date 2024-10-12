@@ -4,7 +4,7 @@
 #include"MenuAbstr.h"
 class Bruteforce:public MenuAbstr {
 public:
-	void start() override;
+	double start() override;
 };
 
 #endif

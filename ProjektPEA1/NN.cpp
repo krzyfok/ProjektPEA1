@@ -5,8 +5,10 @@ using namespace std;
 //http://algorytmy.ency.pl/artykul/algorytm_najblizszego_sasiada
 //http://algorytmy.ency.pl/artykul/powtarzalny_algorytm_najblizszego_sasiada
 //https://kcir.pwr.edu.pl/~witold/aiarr/2006_projekty/TSP/
-void NN::start()
+//NN RNN?
+double NN::start()
 {
+	licznik.start();
 	int aktulane_minimum = INT_MAX;
 	int nastepne_minimum = 0;
 	for (int i = 0; i < macierz.size(); i++)
@@ -21,6 +23,7 @@ void NN::start()
 	}
 	cout << aktulane_minimum<<endl;
 	waga_calkowita = aktulane_minimum;
+	return licznik.stop();
 }
 int NN::nn(int start)
 {

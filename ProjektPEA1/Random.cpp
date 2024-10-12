@@ -1,44 +1,25 @@
 #include<iostream>
 #include <algorithm>
-#include"Bruteforce.h"
+#include"Random.h"
+#include<random>
 using namespace std;
-double Bruteforce::start()
+
+double Random::start()
 {
 	licznik.start();
+	int licznik_losowan = 1000;
 	int minimum = INT_MAX;
-	vector<int> kolejnosc;//wszytskie wierzcho³ki do permutacji
+	auto rng = std::default_random_engine{};
+	vector <int> kolejnosc;
 	for (int i = 1; i < macierz.size(); i++)
 	{
 		kolejnosc.push_back(i);
 	}
-//v1
-/*	do
+	while (licznik_losowan > 0)
 	{
 		int koszt = 0;
 		int wierzch_kolejny = 0;
-		for (int i = 0; i < kolejnosc.size(); i++)
-		{
-			koszt += macierz[wierzch_kolejny][kolejnosc[i]];
-			wierzch_kolejny = kolejnosc[i];
-		}
 
-		koszt+= macierz[wierzch_kolejny][0];
-		if (koszt < minimum)minimum = koszt;
-	}
-	 while (next_permutation(kolejnosc.begin(), kolejnosc.end()));
-	
-		cout << minimum<<endl;
-
-	*/
-
-//v2
-
-	kolejnosc_przejscia.clear();
-	kolejnosc_przejscia.resize(macierz.size());
-	while (next_permutation(kolejnosc.begin(), kolejnosc.end()))
-	{
-		int koszt = 0;
-		int wierzch_kolejny = 0;
 		
 		kolejnosc_przejscia_nastepnego.clear();
 		kolejnosc_przejscia_nastepnego.push_back(0);
@@ -53,16 +34,21 @@ double Bruteforce::start()
 		koszt += macierz[wierzch_kolejny][0];
 		if (koszt < minimum)
 		{
-			
+
 			minimum = koszt;
-			
+
 			kolejnosc_przejscia = kolejnosc_przejscia_nastepnego;
+			licznik_losowan = 1000;
 
 		}
-		
+		else
+		{
+			licznik_losowan--;
+		}
+
+		shuffle(kolejnosc.begin(), kolejnosc.end(), rng);
 	}
 	waga_calkowita = minimum;
 	cout << minimum << endl;
 	return licznik.stop();
-	
 }
