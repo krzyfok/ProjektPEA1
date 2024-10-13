@@ -1,1 +1,10 @@
-rozmiar 234
+liczba_instancji 7
+rozmiar1 4
+rozmiar2 6
+rozmiar3 8
+rozmiar4 10
+rozmiar5 12
+rozmiar6 14
+rozmiar7 15
+powtorzenia 100
+random_parametr 1000

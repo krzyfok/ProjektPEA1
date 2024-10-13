@@ -4,23 +4,42 @@
 #include"NN.h"
 #include"Random.h"
 #include "MenuAbstr.h"
+#include"Testowanie.h"
 #include<fstream>
 #include<string>
+#include<vector>
 using namespace std;
 
+vector<int> MainMenu::rozmiary_macierzy;
+int MainMenu:: powtorzenia;
+int MainMenu::liczba_instancji;
 
 void MainMenu:: wczytanie_konfiguracji()
-{	//dodac parametry startowe - liczba powtórzen, rozmair macierzy, iteracje w random?
+{	//dodac parametry startowe - liczba powtórzen dla tesstow, rozmair macierzy, iteracje w random? eksport do csv kazda mcierz do excela roznica w wynnikach dla algortymow do sprawopzdania
 	string nazwa = "config.txt";
 	ifstream plik(nazwa);
-
+	
 	if (plik.is_open()) {
 		
-		string aa;
-		plik >> aa;
-		cout << aa;
-		plik >> aa;
-		cout << aa;
+		string nazwa;
+		int dane;
+
+		plik >> nazwa ;
+		plik >> liczba_instancji;
+		cout << nazwa<<" " << liczba_instancji << endl;
+		
+
+		for (int i = 0; i < liczba_instancji; i++)
+		{
+			plik >> nazwa;
+			plik >> dane;
+			cout << nazwa<<" " << dane << endl;
+			rozmiary_macierzy.push_back(dane);
+		}
+
+		plik >> nazwa;
+		plik >> powtorzenia;
+		cout << nazwa<<" " << powtorzenia << endl;
 
 		plik.close();
 	}
@@ -57,6 +76,11 @@ void MainMenu::main_menu() {
 		{
 			algorytmy_menu();
 			break;
+		}
+		case 5:
+		{
+			Testowanie t;
+			t.test_start(rozmiary_macierzy,powtorzenia);
 		}
 
 		}

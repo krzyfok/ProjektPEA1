@@ -134,6 +134,7 @@
     <ClCompile Include="NN.cpp" />
     <ClCompile Include="ProjektPEA1.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Testowanie.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bruteforce.h" />
@@ -142,6 +143,7 @@
     <ClInclude Include="MenuAbstr.h" />
     <ClInclude Include="NN.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="Testowanie.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
