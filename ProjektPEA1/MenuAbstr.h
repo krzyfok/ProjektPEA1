@@ -11,10 +11,12 @@ public:
     static vector<vector<int>> macierz;
     static vector<int> kolejnosc_przejscia;
     static vector<int> kolejnosc_przejscia_nastepnego;
+
+    void wyswietlanie_trasy();
     static int waga_calkowita;
-    static void generacja();
+    static void generacja(int n);
     static void wyswietlanie();
-    static void wczytywanie();
+    static void wczytywanie(string nazwa);
 
     virtual double start() = 0; 
 };

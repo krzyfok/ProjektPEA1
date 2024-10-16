@@ -4,6 +4,7 @@
 using namespace std;
 double Bruteforce::start()
 {
+	double czas;
 	licznik.start();
 	int minimum = INT_MAX;
 	vector<int> kolejnosc;//wszytskie wierzcho³ki do permutacji
@@ -11,27 +12,7 @@ double Bruteforce::start()
 	{
 		kolejnosc.push_back(i);
 	}
-//v1
-/*	do
-	{
-		int koszt = 0;
-		int wierzch_kolejny = 0;
-		for (int i = 0; i < kolejnosc.size(); i++)
-		{
-			koszt += macierz[wierzch_kolejny][kolejnosc[i]];
-			wierzch_kolejny = kolejnosc[i];
-		}
 
-		koszt+= macierz[wierzch_kolejny][0];
-		if (koszt < minimum)minimum = koszt;
-	}
-	 while (next_permutation(kolejnosc.begin(), kolejnosc.end()));
-	
-		cout << minimum<<endl;
-
-	*/
-
-//v2
 
 	kolejnosc_przejscia.clear();
 	kolejnosc_przejscia.resize(macierz.size());
@@ -61,8 +42,10 @@ double Bruteforce::start()
 		}
 		
 	}
+
+	czas = licznik.stop();
 	waga_calkowita = minimum;
-	cout << minimum << endl;
-	return licznik.stop();
+	cout<<"Bruteforce:          " << "waga: " << minimum << " ";
+	return czas;
 	
 }

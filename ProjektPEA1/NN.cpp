@@ -8,35 +8,22 @@ using namespace std;
 //NN RNN?
 double NN::start()
 {
+	double czas;
+	kolejnosc_przejscia.clear();
 	licznik.start();
-	int aktulane_minimum = INT_MAX;
-	int nastepne_minimum = 0;
-	for (int i = 0; i < macierz.size(); i++)
-	{
-		nastepne_minimum = nn(i);
-		if (nastepne_minimum < aktulane_minimum)
-		{
-			kolejnosc_przejscia = kolejnosc_przejscia_nastepnego;
-			aktulane_minimum = nastepne_minimum;
-		}
-		
-	}
-	cout << aktulane_minimum<<endl;
-	waga_calkowita = aktulane_minimum;
-	return licznik.stop();
-}
-int NN::nn(int start)
-{
+	
+
 	int waga = 0;
+	int start = rand() % macierz.size();
 	int aktualny = start;
-	vector<int> odwiedzone(macierz.size(),0);
+	vector<int> odwiedzone(macierz.size(), 0);
 	odwiedzone[aktualny] = 1;
 	//szukanie minimum po³¹czonego
 	int laczone_minimum = INT_MAX;
-	int nowy=-1;
+	int nowy = -1;
 	kolejnosc_przejscia_nastepnego.clear();
-	kolejnosc_przejscia_nastepnego.push_back(start);
-	for (int k = 0; k < macierz.size()-1; k++) {
+	kolejnosc_przejscia_nastepnego.push_back(aktualny);
+	for (int k = 0; k < macierz.size() - 1; k++) {
 		laczone_minimum = INT_MAX;
 		nowy = -1;
 		for (int i = 0; i < macierz.size(); i++)
@@ -46,9 +33,9 @@ int NN::nn(int start)
 			{
 				laczone_minimum = macierz[aktualny][i];
 				nowy = i;
-			
+
 			}
-		
+
 		}
 		if (nowy != -1) {
 			waga += laczone_minimum;
@@ -58,5 +45,13 @@ int NN::nn(int start)
 		}
 	}
 	waga += macierz[aktualny][start];
-	return waga;
+
+
+
+	czas = licznik.stop();
+	kolejnosc_przejscia.clear();
+	kolejnosc_przejscia = kolejnosc_przejscia_nastepnego;
+	cout<<"Nearest Neighbour:   " << "waga: " << waga << " ";
+	waga_calkowita = waga;
+	return czas;
 }

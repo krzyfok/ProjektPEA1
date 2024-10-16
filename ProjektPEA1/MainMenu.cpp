@@ -13,6 +13,10 @@ using namespace std;
 vector<int> MainMenu::rozmiary_macierzy;
 int MainMenu:: powtorzenia;
 int MainMenu::liczba_instancji;
+int MainMenu::progres;
+int MainMenu::tryb;
+string MainMenu::dane_wejsciowe;
+string MainMenu::dane_wyjsciowe;
 
 void MainMenu:: wczytanie_konfiguracji()
 {	//dodac parametry startowe - liczba powtórzen dla tesstow, rozmair macierzy, iteracje w random? eksport do csv kazda mcierz do excela roznica w wynnikach dla algortymow do sprawopzdania
@@ -23,6 +27,24 @@ void MainMenu:: wczytanie_konfiguracji()
 		
 		string nazwa;
 		int dane;
+
+		cout << "KONFIGURACJA: "<<endl;
+		plik >> nazwa;
+		plik >> tryb;
+		cout << nazwa << " " << tryb << endl;
+
+		plik >> nazwa;
+		plik >> dane_wejsciowe;
+		cout << nazwa << " " <<dane_wejsciowe << endl;
+
+		plik >> nazwa;
+		plik >> dane_wyjsciowe;
+		cout << nazwa << " " << dane_wyjsciowe << endl;
+
+		plik >> nazwa;
+		plik >> progres;
+		cout << nazwa << " " << progres << endl;
+
 
 		plik >> nazwa ;
 		plik >> liczba_instancji;
@@ -39,9 +61,10 @@ void MainMenu:: wczytanie_konfiguracji()
 
 		plik >> nazwa;
 		plik >> powtorzenia;
-		cout << nazwa<<" " << powtorzenia << endl;
+		cout << nazwa<<" " << powtorzenia << endl<<endl<<endl;
 
 		plik.close();
+		
 	}
 	else {
 		cout << "BRAK PLIKU\n";
@@ -49,80 +72,30 @@ void MainMenu:: wczytanie_konfiguracji()
 }
 void MainMenu::main_menu() {
 	wczytanie_konfiguracji();
-	while (true)
+
+	if (tryb == 1)
 	{
-		printf("1.Wczytanie danych z pliku\n");
-		printf("2.Wygenerowanie danych losowych\n");
-		printf("3.Wyœwietlenie ostatnich danych\n");
-		printf("4.Uruchomienie algorytmu\n");
-		printf("5.Testowanie\n");
-		printf("6.Wyjscie\n");
+		Bruteforce b;
+		NN n;
+		Random r;
 
+		MenuAbstr::wczytywanie(dane_wejsciowe);
+		cout << "czas[ms]: " << b.start(); b.wyswietlanie_trasy();
 
-		int x;
-		cin >> x;
-		switch (x)
-		{
-		case 1:
-			MenuAbstr::wczytywanie();
-			break;
-		case 2:
-			MenuAbstr::generacja();
-			break;
-		case 3:
-			MenuAbstr::wyswietlanie();
-			break;
-		case 4:
-		{
-			algorytmy_menu();
-			break;
-		}
-		case 5:
-		{
-			Testowanie t;
-			t.test_start(rozmiary_macierzy,powtorzenia);
-		}
-
-		}
+		cout << "czas[ms]: " << n.start(); n.wyswietlanie_trasy();
+		cout << "czas[ms]: " << r.start(); r.wyswietlanie_trasy();
+		MenuAbstr::wyswietlanie();
+		
 	}
+	else
+	{
+
+		Testowanie t;
+		t.test_start(rozmiary_macierzy, powtorzenia, progres, dane_wyjsciowe);
+	}
+
+
 
 
 }
 
-void MainMenu:: algorytmy_menu()
-{
-	while (true)
-	{
-		printf("1.Przeglad zupelny\n");
-		printf("2.Najblizszy sasiad\n");
-		printf("3.Losowy\n");
-		printf("4.Cofnij\n");
-
-
-		int x;
-		cin >> x;
-		switch (x)
-		{
-		case 1:
-		{
-			Bruteforce b;
-			cout<<"Czas: " << b.start() << endl;
-			break;
-		}
-		case 2:
-		{
-			NN n;
-			cout<<"Czas: " << n.start() << endl;
-			break;
-		}
-		case 3:
-		{
-			Random r;
-			cout << "Czas: " << r.start() << endl;
-			break;
-		}
-		case 4:
-			return;
-		}
-	}
-}

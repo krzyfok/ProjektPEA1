@@ -9,12 +9,10 @@ vector<int> MenuAbstr::kolejnosc_przejscia;
 vector<int> MenuAbstr::kolejnosc_przejscia_nastepnego;
 int MenuAbstr::waga_calkowita =0;
 LicznikCzasu licznik;
-void MenuAbstr::generacja()
+void MenuAbstr::generacja(int n)
 {
 
-	int rozmiar;
-	cout << "podaj ilosc miast: ";
-	cin >> rozmiar;
+	int rozmiar=n;
 	
 	//deklaracja rozmiary wektora
 	macierz.resize(rozmiar);
@@ -59,21 +57,25 @@ void MenuAbstr :: wyswietlanie()
 		cout << endl;
 	}
 
+}
+
+void MenuAbstr::wyswietlanie_trasy()
+{
+	cout << "  TRASA: ";
 	for (int i = 0; i < kolejnosc_przejscia.size(); i++)
 	{
 		cout << kolejnosc_przejscia[i] << " ";
 	}
 	cout << endl;
-	cout << "WAGA: " << " " << waga_calkowita << endl;
+
 }
 
-void MenuAbstr::wczytywanie()
+void MenuAbstr::wczytywanie(string nazwa)
 {
 	macierz.clear();
-	string nazwa;
+	
 	int rozmiar;
-	cout << "PODAJ NAZWE PLIKU: ";
-	cin >> nazwa;
+	
 
 	ifstream plik(nazwa);  
 

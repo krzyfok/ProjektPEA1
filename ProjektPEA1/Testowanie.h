@@ -4,7 +4,7 @@
 using namespace std;
 class Testowanie {
 public:
-	void test_start(vector <int> rozmiary, int powtorzenia);
+	void test_start(vector <int> rozmiary, int powtorzenia, int progres, string  plik_wyjsciowy);
 	
 
 
