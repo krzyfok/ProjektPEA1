@@ -15,6 +15,7 @@ public:
     void wyswietlanie_trasy();
     static int waga_calkowita;
     static void generacja(int n);
+    static void generacja_sym(int n);
     static void wyswietlanie();
     static void wczytywanie(string nazwa);
 

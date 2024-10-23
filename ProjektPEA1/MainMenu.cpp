@@ -19,7 +19,7 @@ string MainMenu::dane_wejsciowe;
 string MainMenu::dane_wyjsciowe;
 
 void MainMenu:: wczytanie_konfiguracji()
-{	//dodac parametry startowe - liczba powtórzen dla tesstow, rozmair macierzy, iteracje w random? eksport do csv kazda mcierz do excela roznica w wynnikach dla algortymow do sprawopzdania
+{	//wczytywanie danych z pliku konfiguraycjnego
 	string nazwa = "config.txt";
 	ifstream plik(nazwa);
 	
@@ -67,7 +67,8 @@ void MainMenu:: wczytanie_konfiguracji()
 		
 	}
 	else {
-		cout << "BRAK PLIKU\n";
+		cout << "BRAK PLIKU KONFIGURACYJNEGO\n";
+		exit(0);
 	}
 }
 void MainMenu::main_menu() {
@@ -94,8 +95,8 @@ void MainMenu::main_menu() {
 		t.test_start(rozmiary_macierzy, powtorzenia, progres, dane_wyjsciowe);
 	}
 
-
-
+	cout<<"NACISNIJ DOWOLNY PRZYCISK BY ZAKONCZYC";
+	getchar();
 
 }
 

@@ -5,6 +5,7 @@
 class Bruteforce:public MenuAbstr {
 public:
 	double start() override;
+	bool nastepna_permutacja(vector<int>& kolejnosc);
 };
 
 #endif

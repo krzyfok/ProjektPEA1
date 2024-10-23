@@ -2,19 +2,13 @@
 #include <algorithm>
 #include"NN.h"
 using namespace std;
-//http://algorytmy.ency.pl/artykul/algorytm_najblizszego_sasiada
-//http://algorytmy.ency.pl/artykul/powtarzalny_algorytm_najblizszego_sasiada
-//https://kcir.pwr.edu.pl/~witold/aiarr/2006_projekty/TSP/
-//NN RNN?
-double NN::start()
+
+
+int NN :: rNN(int w)
 {
-	double czas;
-	kolejnosc_przejscia.clear();
-	licznik.start();
-	
 
 	int waga = 0;
-	int start = rand() % macierz.size();
+	int start = w;
 	int aktualny = start;
 	vector<int> odwiedzone(macierz.size(), 0);
 	odwiedzone[aktualny] = 1;
@@ -28,7 +22,7 @@ double NN::start()
 		nowy = -1;
 		for (int i = 0; i < macierz.size(); i++)
 		{
-
+			//szukanie najbl¿szego wierzcho³ka
 			if (odwiedzone[i] == 0 && laczone_minimum > macierz[aktualny][i])
 			{
 				laczone_minimum = macierz[aktualny][i];
@@ -36,7 +30,7 @@ double NN::start()
 
 			}
 
-		}
+		}//dodawanie najbli¿szego do drogi
 		if (nowy != -1) {
 			waga += laczone_minimum;
 			aktualny = nowy;
@@ -48,10 +42,35 @@ double NN::start()
 
 
 
-	czas = licznik.stop();
+	
+	return waga;
+
+
+}
+double NN::start()
+{
+	
+	double czas;
+	int waga_tymczasowa = INT_MAX;
+	waga_calkowita = INT_MAX;
 	kolejnosc_przejscia.clear();
-	kolejnosc_przejscia = kolejnosc_przejscia_nastepnego;
-	cout<<"Nearest Neighbour:   " << "waga: " << waga << " ";
-	waga_calkowita = waga;
+	licznik.start();
+	for (int i = 0; i < macierz.size(); i++)
+	{
+		waga_tymczasowa = NN::rNN(i);
+		if (waga_tymczasowa < waga_calkowita)
+		{
+			waga_calkowita = waga_tymczasowa;
+			kolejnosc_przejscia.clear();
+			kolejnosc_przejscia = kolejnosc_przejscia_nastepnego;
+		}
+	}
+
+	czas = licznik.stop();
+	cout << "Nearest Neighbour:   " << "waga: " << waga_calkowita << " ";
+	
 	return czas;
+
+
+
 }

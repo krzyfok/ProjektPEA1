@@ -19,7 +19,7 @@ void Testowanie:: test_start(vector <int> rozmiary, int powtorzenia, int progres
 	ofstream myfile;
 	myfile.open(plik_wyjsciowy);
 	if (!myfile.is_open()) {
-		cout << "Nie uda³o siê otworzyæ pliku!" << endl;
+		cout << "Nie udalo siê otworzyc pliku wyjsciowego!" << endl;
 		return;
 	}
 	//brutefroce
@@ -38,6 +38,23 @@ void Testowanie:: test_start(vector <int> rozmiary, int powtorzenia, int progres
 		myfile << "\n";
 		suma = 0;
 	}
+	myfile << "\n";
+	for (int instancje = 0; instancje < rozmiary.size(); instancje++)
+	{
+		for (int i = 0; i < powtorzenia; i++)
+		{
+			system("cls");
+			if (progres == 1)cout << "Bruteforce " << instancje << "  " << i << endl;
+			MenuAbstr::generacja_sym(rozmiary[instancje]);
+			czas = b.start();
+			myfile << czas << ";";
+			suma += czas;
+		}
+		myfile << "srednia;" << (suma / powtorzenia);
+		myfile << "\n";
+		suma = 0;
+	}
+
 	
 	myfile << "\n";
 	//NN
@@ -60,6 +77,26 @@ void Testowanie:: test_start(vector <int> rozmiary, int powtorzenia, int progres
 	}
 	myfile << "\n";
 
+
+	for (int instancje = 0; instancje < rozmiary.size(); instancje++)
+	{
+		for (int i = 0; i < powtorzenia; i++)
+		{
+
+			system("cls");
+			if (progres == 1)cout << "NN " << instancje << "  " << i << endl;
+			MenuAbstr::generacja_sym(rozmiary[instancje]);
+			czas = n.start();
+			myfile << czas << ";";
+			suma += czas;
+
+		}
+		myfile << "srednia;" << (suma / powtorzenia);
+		myfile << "\n";
+		suma = 0;
+	}
+	myfile << "\n";
+
 	//random
 	for (int instancje = 0; instancje < rozmiary.size(); instancje++)
 	{
@@ -68,6 +105,23 @@ void Testowanie:: test_start(vector <int> rozmiary, int powtorzenia, int progres
 
 			system("cls");
 			if(progres==1)cout <<" Random " << instancje << " r " << i << endl;
+			MenuAbstr::generacja(rozmiary[instancje]);
+			czas = r.start();
+			myfile << czas << ";";
+			suma += czas;
+		}
+		myfile << "srednia;" << (suma / powtorzenia);
+		myfile << "\n";
+		suma = 0;
+	}
+	myfile << "\n";
+	for (int instancje = 0; instancje < rozmiary.size(); instancje++)
+	{
+		for (int i = 0; i < powtorzenia; i++)
+		{
+
+			system("cls");
+			if (progres == 1)cout << " Random " << instancje << " r " << i << endl;
 			MenuAbstr::generacja(rozmiary[instancje]);
 			czas = r.start();
 			myfile << czas << ";";

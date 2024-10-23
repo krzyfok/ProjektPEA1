@@ -29,13 +29,13 @@ double Random::start()
 		int pozycja = -1;
 		int koszt = INT_MAX;
 		//obliczanie najnizszego kosztu 
-		for (int i = 0; i <kolejnosc_przejscia.size(); i++)
+		for (int i = 0; i <kolejnosc_przejscia.size()-1; i++)
 		{
-			//uzwglednienie cyklu przy losowaniu skrajnego wierzcholka z sciezki
-			int sprawdzany = (i + 1) % kolejnosc_przejscia.size();
 
-			//int koszt_obecny = obliczanie_kosztu(kolejnosc_przejscia[i], losowany);
-			int koszt_obecny = macierz[kolejnosc_przejscia[i]][losowany];
+			int nastepny = (i + 1) ;
+
+			//koszt do wierzcho³ka i z 
+			int koszt_obecny = macierz[kolejnosc_przejscia[i]][losowany]+macierz[losowany][kolejnosc_przejscia[nastepny]];
 			if (koszt > koszt_obecny)
 			{
 				koszt = koszt_obecny;
@@ -48,7 +48,7 @@ double Random::start()
 
 	}
 	czas = licznik.stop();
-
+	//obliczanie wagi drogi
 	waga_calkowita = 0;
 	for (int i = 0; i < kolejnosc_przejscia.size() - 1; i++)
 	{
